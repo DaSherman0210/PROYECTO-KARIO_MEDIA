@@ -1,0 +1,189 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body, #root, .ruta, .body{
+    width: 100%;
+}
+
+.login {
+    background-image: url(../camarografos.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+.login::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    background-size: cover;
+}
+
+.miniLogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    padding: 6.05%;
+}
+
+.card{
+    background-color: white;
+    opacity: 1;
+    width: 900px;
+    height: 750px;
+    border-radius: 67px;
+    border: 1px solid hsla(0, 0%, 44%, 1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card img{
+    width: 100px;
+}
+
+.card .media{
+    font: normal normal 300 18px/36px Myriad Pro;
+    letter-spacing: 4px;
+}
+
+.card h2{
+    text-align: center;
+    font: normal normal normal 40px/56px Myriad Pro;
+    letter-spacing: 0px;
+    color: hsla(0, 0%, 0%, 1);
+    opacity: 1;
+    margin: 0 10rem 1rem 10rem;
+}
+
+.card .text{
+    text-align: center;
+    font: normal normal 300 20px/28px Myriad Pro;
+    letter-spacing: 0px;
+    color: hsla(0, 0%, 0%, 1);
+    opacity: 1;
+    width: 600px;
+    height: 20px;
+    margin-bottom: 1rem;
+}
+
+.card .user label , .password label{
+    text-align: left;
+    font: normal normal 300 25px/35px Myriad Pro;
+    letter-spacing: 0px;
+    color: hsla(0, 0%, 0%, 1);
+    opacity: 1;
+}
+
+.card .user input, .password input{
+    width: 650px;
+    height: 50px;
+    background: hsla(0, 0%, 100%, 1) 0% 0% no-repeat padding-box;
+    border: 1px solid hsla(0, 0%, 44%, 1);
+    border-radius: 20px;
+    opacity: 1;
+    margin-bottom: 1rem;
+}
+
+.card .user , .password{
+    display: flex;
+    flex-direction: column;
+}
+
+.card form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card .button{
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    width: 336px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    background: hsla(19, 100%, 59%, 1) 0% 0% no-repeat padding-box;
+    border-radius: 35px;
+    opacity: 1;
+}
+
+.card .ultimoText{
+    text-align: center;
+    font: normal normal 300 15px/21px Myriad Pro;
+    letter-spacing: 0px;
+    color: hsla(0, 0%, 0%, 1);
+    opacity: 1;
+}
+
+@media (max-width: 400px){
+
+    .login{
+        top: 15rem;
+    }
+
+    .card{
+        width: 350px;
+        height: 450px;
+        border-radius: 37px;
+    }
+
+    .card img{
+        width: 40px;
+    }
+
+    .card .media{
+        font: normal normal 300 10px/36px Myriad Pro;
+        margin: 0;
+    }
+
+    .card h2{
+        font: normal normal normal 20px/26px Myriad Pro;
+        margin: 0 2rem 7px 2rem;
+    }
+
+    .card .text{
+        font: normal normal 300 15px/18px Myriad Pro;
+        width: 310px;
+    }
+
+    .card .user label , .password label{
+        font: normal normal 300 18px/35px Myriad Pro;
+    }
+
+    
+    .card .user input, .password input{
+        width: 300px;
+        height: 30px;
+        margin-bottom: 1rem;
+    } 
+    
+    .card .user input{
+        margin-bottom: .3rem;
+    }
+    
+    .card .button{
+        width: 300px;
+        height: 40px;
+        margin-bottom: .5rem;
+        margin-top: 0;
+    }
+
+    .card .ultimoText{
+        font: normal normal 300 13px/15px Myriad Pro;
+    }
+
+}
