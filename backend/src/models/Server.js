@@ -1,13 +1,15 @@
 import express from 'express';
 import cors from 'cors';
-import rolRoutes from '../routes/roles.routes.js';
+import { rolRoutes, usuariosRoutes } from '../routes/roles.routes.js';
+
 
 class Server {
-    constructor(){
+    constructor() {
         this.app = express();
         this.port = process.env.PORT;
         this.paths = {
-            rolesPath:      '/roles'
+            rolesPath: '/roles',
+            usuarioPath: '/usuarios'
         }
 
         // Middlewares
@@ -17,7 +19,7 @@ class Server {
         this.routes();
     }
 
-    middlewares(){
+    middlewares() {
         // CORS
         this.app.use(cors());
 
@@ -28,11 +30,12 @@ class Server {
         this.app.use(express.static('public'));
     }
 
-    routes(){
+    routes() {
         this.app.use(this.paths.rolesPath, rolRoutes);
+        this.app.use(this.paths.usuarioPath, usuariosRoutes);
     }
 
-    listen(){
+    listen() {
         this.app.listen(this.port, () => {
             console.log(`Servidor corriendo en el puerto: ${this.port}`);
         })
