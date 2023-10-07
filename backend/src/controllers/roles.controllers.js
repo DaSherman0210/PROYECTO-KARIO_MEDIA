@@ -89,9 +89,6 @@ const postRol = async (req, res) => {
     }
 }
 
-
-
-
 const deleteRol = async (req, res) => {
     try {
         const id = { _id: new ObjectId(req.params.id) };
