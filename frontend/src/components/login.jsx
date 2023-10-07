@@ -5,7 +5,13 @@ import { Button } from "semantic-ui-react";
 import "../assets/css/login.css";
 
 const Login = () => {
+    
     const navigate = useNavigate();
+
+    const agregarToken = () =>{
+        localStorage.setItem("fakeToken", "hola")
+    }
+
     return(
         <div className="login">
             <div className="miniLogin">
@@ -21,9 +27,10 @@ const Login = () => {
                 </div>
                 <div className="password">
                     <label>Contraseña</label>
-                    <input type="text" />
+                    <input type="password" />
                 </div>
                 <Button className="button" onClick={()=>{
+                    agregarToken();
                     navigate("/dashboard")
                 }}>Ingresar al panel</Button>  
 
