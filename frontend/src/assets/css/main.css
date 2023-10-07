@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.headerPage{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1rem;
+    border-bottom: 1px solid grey;
+}
+
+.addHeader , .refreshHeader , .deleteHeader , .reportHeader , .helpHeader , .moreHeader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addHeader img, .refreshHeader img, .deleteHeader img, .reportHeader img, .helpHeader img{
+    width: 34px;
+    height: 34px;
+}
+
+.addHeader p, .refreshHeader p, .deleteHeader p, .reportHeader p, .helpHeader p{
+    text-align: left;
+    font: normal normal normal 24px/34px Myriad Pro;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+}
+
+.logoHeader{
+    width: 42px;
+    height: 37px;
+}
+
+.gearHeader {
+    width: 19px;
+    height: 19px;
+}
+
+.bellHeader{
+    width: 21px;
+    height: 20px;
+}
+
+.personaHeader{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.moreHeader{
+    width: 346px;
+    height: 40px;
+    gap: 1rem;
+}
+
+.bodyPage{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.h1Page{
+    margin: 1rem;
+    text-align: center;
+    font: normal normal normal 40px/56px Myriad Pro;
+}
+
+.firstTextPage{
+    text-align: left;
+    width: 1536px;
+    height: 24px;
+    text-align: center;
+    font: normal normal 300 20px/34px Myriad Pro;
+}
+
+.tablePage{
+    margin-top: 2rem;
+    width: 1700px;
+    border-collapse: collapse;
+}
+
+
+.headerTableText{
+    text-align: left;
+    font: normal normal normal 24px/34px Myriad Pro;
+    letter-spacing: 0px;
+    color: #000000;
+    opacity: 1;
+}
+
+.trBodyTable{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #707070;
+    border-radius: 200px;
+}
+
+.bodyTableText{
+    text-align: left;
+    font: normal normal 300 24px/34px Myriad Pro;
+    letter-spacing: 0px;
+    color: #000000;
+}
+
+tbody tr {
+    border-radius: 200px;
+}

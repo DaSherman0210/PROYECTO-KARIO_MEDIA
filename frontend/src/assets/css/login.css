@@ -91,6 +91,8 @@ html, body, #root, .ruta, .body{
     border-radius: 20px;
     opacity: 1;
     margin-bottom: 1rem;
+    font-size: 1.5rem;
+    padding-left: 1rem;
 }
 
 .card .user , .password{
@@ -135,8 +137,13 @@ html, body, #root, .ruta, .body{
         top: 15rem;
     }
 
+    .miniLogin{
+        padding: 42%;
+    }
+    
     .card{
-        width: 350px;
+        width: 1000px;
+        padding: 2rem;
         height: 450px;
         border-radius: 37px;
     }
@@ -157,7 +164,7 @@ html, body, #root, .ruta, .body{
 
     .card .text{
         font: normal normal 300 15px/18px Myriad Pro;
-        width: 310px;
+        width: 290px;
     }
 
     .card .user label , .password label{
@@ -166,7 +173,7 @@ html, body, #root, .ruta, .body{
 
     
     .card .user input, .password input{
-        width: 300px;
+        width: 270px;
         height: 30px;
         margin-bottom: 1rem;
     } 
@@ -176,7 +183,7 @@ html, body, #root, .ruta, .body{
     }
     
     .card .button{
-        width: 300px;
+        width: 270px;
         height: 40px;
         margin-bottom: .5rem;
         margin-top: 0;
