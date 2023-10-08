@@ -18,23 +18,23 @@ const connectToMongo = async () => {
 } */
 
 const isAdminRole = async (req, res, next) => {
-    // const collection = await connectToMongo();
-    const { rol, nombre } = req.usuario;
+  // const collection = await connectToMongo();
+  const { rol, nombre } = req.usuario;
 
-    if (!req.usuario) {
-        return res.status(500).json({
-            msg: "Es necesario verificar el rol antes de validar el token."
-        })
-    }
+  if (!req.usuario) {
+    return res.status(500).json({
+      msg: "Es necesario verificar el rol antes de validar el token.",
+    });
+  }
 
-    /* ID del rol "ADMIN" registrado en la base de datos */
-    if (rol !== ObjectId('652017a6ea25e24d9f8441f2')) {
-        return res.status(401).josn({
-            msg: `El usuario ${nombre} no es administrador, por lo tanto, no se permite realizar la acción.`
-        })
-    }
+  /* ID del rol "ADMIN" registrado en la base de datos */
+  if (rol !== ObjectId("652017a6ea25e24d9f8441f2")) {
+    return res.status(401).json({
+      msg: `El usuario ${nombre} no es administrador, por lo tanto, no se permite realizar la acción.`,
+    });
+  }
 
-    next();
-}
+  next();
+};
 
-export default isAdminRole;
+export { isAdminRole };
