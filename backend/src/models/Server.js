@@ -2,13 +2,15 @@ import express from "express";
 import cors from "cors";
 import rolRoutes from "../routes/roles.routes.js";
 import usuarioRoutes from "../routes/usuarios.routes.js";
+import authRoutes from "../routes/auth.routes.js";
 class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT;
     this.paths = {
-      rolesPath: "/roles",
-      usuarioPath: "/usuarios",
+      rolesPath:    "/roles",
+      usuarioPath:  "/usuarios",
+      authPath:     "/auth"
     };
 
     // Middlewares
@@ -32,6 +34,7 @@ class Server {
   routes() {
     this.app.use(this.paths.rolesPath, rolRoutes);
     this.app.use(this.paths.usuarioPath, usuarioRoutes);
+    this.app.use(this.paths.authPath, authRoutes);
   }
 
   listen() {
