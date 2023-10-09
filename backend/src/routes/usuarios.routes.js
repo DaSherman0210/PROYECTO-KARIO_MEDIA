@@ -3,6 +3,7 @@ import { check } from "express-validator";
 import { validateDocuments } from "../middlewares/validate.documents.js";
 import { validateJWT } from "../middlewares/validate.jwt.js";
 import { isAdminRole } from "../middlewares/validate.role.js";
+import { emailExiste, isValidRole, userExistsById } from "../helpers/db.validators.js";
 import {
   getUsuarios,
   getUsuarioById,
@@ -31,6 +32,7 @@ router.post(
       "password",
       "El password debe ser mínimo de 6 dígitos. USUARIOS.ROUTES"
     ).isLength({ min: 6 }),
+    check('rol').custom(isValidRole),
     validateDocuments
   ],
   postUsuario
@@ -41,6 +43,7 @@ router.delete(
     validateJWT,
     isAdminRole,
     check("id", "No es un ID válido. USUARIOS.ROUTES").isMongoId(),
+    check('id').custom(userExistsById),
     validateDocuments,
   ],
   deleteUsuario
@@ -51,6 +54,8 @@ router.put(
     validateJWT,
     isAdminRole,
     check("id", "No es un ID válido. USUARIOS.ROUTES").isMongoId(),
+    check('id').custom(userExistsById),
+    check('rol').custom(isValidRole),
     validateDocuments,
   ],
   updateUsuario
