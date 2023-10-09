@@ -47,7 +47,7 @@ const getReporteById = async (req, res) => {
     try {
         const collection = await connectToMongo();
         const query = { _id: new ObjectId(req.params.id), estado: true };
-        const result = await collection.findOne(query).toArray();
+        const result = await collection.findOne(query);
 
         if (result.length === 0) {
             res.status(404).json({
