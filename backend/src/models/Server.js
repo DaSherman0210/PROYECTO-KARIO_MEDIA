@@ -3,14 +3,19 @@ import cors from "cors";
 import rolRoutes from "../routes/roles.routes.js";
 import usuarioRoutes from "../routes/usuarios.routes.js";
 import authRoutes from "../routes/auth.routes.js";
+import indicadorRoutes from "../routes/indicadores.routes.js";
+import reportesRoutes from "../routes/reportes.routes.js"
+
 class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT;
     this.paths = {
-      rolesPath:    "/roles",
-      usuarioPath:  "/usuarios",
-      authPath:     "/auth"
+      rolesPath:      "/roles",
+      usuarioPath:    "/usuarios",
+      authPath:       "/auth",
+      indicadorPath:  "/indicadores",
+      reportesPath:   "/reportes"
     };
 
     // Middlewares
@@ -35,6 +40,8 @@ class Server {
     this.app.use(this.paths.rolesPath, rolRoutes);
     this.app.use(this.paths.usuarioPath, usuarioRoutes);
     this.app.use(this.paths.authPath, authRoutes);
+    this.app.use(this.paths.indicadorPath, indicadorRoutes);
+    this.app.use(this.paths.reportesPath, reportesRoutes);
   }
 
   listen() {

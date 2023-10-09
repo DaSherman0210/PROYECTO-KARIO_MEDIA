@@ -14,12 +14,15 @@ import {
 const router = Router();
 
 router.get("/", getUsuarios);
-router.get("/:id", getUsuarioById);
+router.get("/:id", [
+  check('id', 'No es un ID válido. USUARIOS.ROUTES').isMongoId(),
+  validateDocuments
+], getUsuarioById);
 router.post(
   "/",
   [
-    // validateJWT,
-    // isAdminRole,
+    validateJWT,
+    isAdminRole,
     check("nombre", "El nombre del usuario es obligatorio. USUARIOS.ROUTES")
       .not()
       .isEmpty(),
@@ -28,14 +31,15 @@ router.post(
       "password",
       "El password debe ser mínimo de 6 dígitos. USUARIOS.ROUTES"
     ).isLength({ min: 6 }),
+    validateDocuments
   ],
   postUsuario
 );
 router.delete(
   "/:id",
   [
-    // validateJWT,
-    // isAdminRole,
+    validateJWT,
+    isAdminRole,
     check("id", "No es un ID válido. USUARIOS.ROUTES").isMongoId(),
     validateDocuments,
   ],
@@ -44,8 +48,8 @@ router.delete(
 router.put(
   "/:id",
   [
-    // validateJWT,
-    // isAdminRole,
+    validateJWT,
+    isAdminRole,
     check("id", "No es un ID válido. USUARIOS.ROUTES").isMongoId(),
     validateDocuments,
   ],
