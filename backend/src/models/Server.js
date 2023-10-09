@@ -4,7 +4,8 @@ import rolRoutes from "../routes/roles.routes.js";
 import usuarioRoutes from "../routes/usuarios.routes.js";
 import authRoutes from "../routes/auth.routes.js";
 import indicadorRoutes from "../routes/indicadores.routes.js";
-import reportesRoutes from "../routes/reportes.routes.js"
+import reportesRoutes from "../routes/reportes.routes.js";
+import ayudasRoutes from "../routes/ayudas.routes.js";
 
 class Server {
   constructor() {
@@ -15,7 +16,8 @@ class Server {
       usuarioPath:    "/usuarios",
       authPath:       "/auth",
       indicadorPath:  "/indicadores",
-      reportesPath:   "/reportes"
+      reportesPath:   "/reportes",
+      ayudasPath:     "/ayudas"
     };
 
     // Middlewares
@@ -42,6 +44,7 @@ class Server {
     this.app.use(this.paths.authPath, authRoutes);
     this.app.use(this.paths.indicadorPath, indicadorRoutes);
     this.app.use(this.paths.reportesPath, reportesRoutes);
+    this.app.use(this.paths.ayudasPath, ayudasRoutes);
   }
 
   listen() {
