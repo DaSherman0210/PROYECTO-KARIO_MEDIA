@@ -23,4 +23,20 @@
 
 .loguito{
     position: absolute;
+    animation: animacion 3s linear;
+}
+
+@keyframes animacion{
+    0%{
+        opacity: 0;
+    }
+    30%{
+        opacity: 1;
+    }
+    70%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }

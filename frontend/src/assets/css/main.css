@@ -1,9 +1,9 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-.headerPage{
+.headerPage {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -11,18 +11,18 @@
     border-bottom: 1px solid grey;
 }
 
-.addHeader , .refreshHeader , .deleteHeader , .reportHeader , .helpHeader , .moreHeader{
+.addHeader, .refreshHeader, .deleteHeader, .reportHeader, .helpHeader, .moreHeader {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.addHeader img, .refreshHeader img, .deleteHeader img, .reportHeader img, .helpHeader img{
+.addHeader img, .refreshHeader img, .deleteHeader img, .reportHeader img, .helpHeader img {
     width: 34px;
     height: 34px;
 }
 
-.addHeader p, .refreshHeader p, .deleteHeader p, .reportHeader p, .helpHeader p{
+.addHeader p, .refreshHeader p, .deleteHeader p, .reportHeader p, .helpHeader p {
     text-align: left;
     font: normal normal normal 24px/34px Myriad Pro;
     letter-spacing: 0px;
@@ -30,7 +30,7 @@
     opacity: 1;
 }
 
-.logoHeader{
+.logoHeader {
     width: 42px;
     height: 37px;
 }
@@ -40,37 +40,36 @@
     height: 19px;
 }
 
-.bellHeader{
+.bellHeader {
     width: 21px;
     height: 20px;
 }
 
-.personaHeader{
+.personaHeader {
     width: 45px;
     height: 45px;
     border-radius: 50%;
 }
 
-.moreHeader{
-    width: 346px;
+.moreHeader {
     height: 40px;
     gap: 1rem;
 }
 
-.bodyPage{
+.bodyPage {
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
 }
 
-.h1Page{
+.h1Page {
     margin: 1rem;
     text-align: center;
     font: normal normal normal 40px/56px Myriad Pro;
 }
 
-.firstTextPage{
+.firstTextPage {
     text-align: left;
     width: 1536px;
     height: 24px;
@@ -78,34 +77,74 @@
     font: normal normal 300 20px/34px Myriad Pro;
 }
 
-.tablePage{
+.tablePage {
     margin-top: 2rem;
-    width: 1700px;
-    border-collapse: collapse;
+    border-collapse: collapse; 
+    border-spacing: 2rem; 
+    overflow: hidden; 
+    width: 95%;
 }
 
-
-.headerTableText{
-    text-align: left;
+.headerTableText {
+    text-align: center;
     font: normal normal normal 24px/34px Myriad Pro;
     letter-spacing: 0px;
     color: #000000;
     opacity: 1;
 }
 
-.trBodyTable{
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    border: 1px solid #707070;
-    border-radius: 200px;
+.trBodyTable {
+    background-size: cover;
+    overflow: hidden;
+    border-radius: 2rem;
 }
 
-.bodyTableText{
-    text-align: left;
+.bodyTableText {
+    text-align: center;
     font: normal normal 300 24px/34px Myriad Pro;
     letter-spacing: 0px;
     color: #000000;
+    padding: 1rem;
+    background: #f1f1f1;
 }
 
-tbody tr {
-    border-radius: 200px;
+.bodyTableText:first-child{
+  border-start-start-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
+
+.rightTableText{
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.iconoHamburguesa{
+    width: 60px;
+    height: 41px;
+}
+
+.bobyButton{
+    opacity: 1;
+    width: 336px;
+    height: 70px;
+    display: flex;
+    cursor: pointer;
+    color: #FFFFFF;
+    margin-top: 2rem;
+    text-align: center; 
+    align-items: center;
+    border-radius: 35px;
+    justify-content: center;
+    font: normal normal normal 25px/35px Myriad Pro;
+    background: #FF6F2C 0% 0% no-repeat padding-box;
+}
+
+.izqData{
+    text-align: left;
+    font-size: 1.5rem;
+}
+
+.circuloData{
+    font-size: .5rem;
+}
+
