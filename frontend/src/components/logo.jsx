@@ -9,7 +9,7 @@ const Logo = () => {
     
     useEffect(() => {
 
-        const token = localStorage.getItem('fakeToken'); 
+        const token = localStorage.getItem('token'); 
 
         if (token) {
             const timer = setTimeout(() => {

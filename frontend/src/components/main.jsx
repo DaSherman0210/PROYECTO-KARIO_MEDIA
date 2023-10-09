@@ -8,18 +8,22 @@ import logo from "../assets/logoKario.png";
 import plus from "../assets/svgs/plus.svg";
 import gear from "../assets/svgs/gear.svg";
 import trash from "../assets/svgs/trash.svg";
+import borrar from "../assets/svgs/delete.svg";
+import { useNavigate } from "react-router-dom";
 import reload from "../assets/svgs/reload.svg";
 import React, { useState, useEffect } from "react";
+import { CircularProgress } from '@chakra-ui/react';
 import hamburguer from "../assets/svgs/hamburguer.svg";
-import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
 
 
 const Main = () => {
 
+    const navigate = useNavigate();
+
     const [indicadores, setIndicadores] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:7779/indicadores`)
+        axios.get(`http://localhost:7778/indicadores`)
             .then((response) => {
                 setIndicadores(response.data.result)
             })
@@ -28,18 +32,35 @@ const Main = () => {
             })
     })
 
+    const refreshPage = () =>{
+        navigate("/")
+    }
+
+    const addPage = () =>{
+        navigate("/add")
+    }
+
+    const mostrarELiminar = () => {
+        const disable = document.getElementsByClassName('deleteDisable');
+        for (let i = 0; i < disable.length; i++) {
+            disable.className = 'deleteEnable'; 
+            console.log(disable.className);
+        }
+        console.log(disable);
+    }
+
     return (
         <div className="mainPage">
             <div className="headerPage">
-                <div className="addHeader">
+                <div className="addHeader" onClick={addPage} >
                     <img src={plus} alt="la" />
                     <p>Añadir</p>
                 </div>
-                <div className="refreshHeader">
+                <div className="refreshHeader" onClick={refreshPage}>
                     <img src={reload} alt="le" />
                     <p>Refrescar</p>
                 </div>
-                <div className="deleteHeader">
+                <div className="deleteHeader" onClick={mostrarELiminar}>
                     <img src={trash} alt="li" />
                     <p>Eliminar</p>
                 </div>
@@ -64,6 +85,7 @@ const Main = () => {
                 <table className="tablePage">
                     <thead>
                         <tr className="trHeaderTable">
+                            <th className="deleteDisable"></th>
                             <th className="headerTableText">Indicador</th>
                             <th className="headerTableText">Descripcion</th>
                             <th className="headerTableText">Categoría</th>
@@ -83,6 +105,7 @@ const Main = () => {
                                     <>
                                         <tr style={{ height: "20px" }}></tr>
                                         <tr className="trBodyTable">
+                                            <td className="deleteDisable"><img src={borrar} alt="si" /></td>
                                             <td className="bodyTableText leftTableText">{data.nombre}</td>
                                             <td className="bodyTableText izqData">{data.descripcion}</td>
                                             <td className="bodyTableText">{data.categoria}</td>
@@ -90,18 +113,23 @@ const Main = () => {
                                             <td className="bodyTableText">{data.fecha_terminacion}</td>
                                             <td className="bodyTableText">{data.formula}</td>
                                             <td className="bodyTableText">{data.frecuencia}</td>
-                                            <td className="bodyTableText circuloData"><CircularProgress value={data.cumplimiento}>{data.cumplimiento}</CircularProgress></td>
+                                            <td className="bodyTableText">
+                                                <div>
+                                                    <CircularProgress value={data.cumplimiento} color={data.cumplimiento < 50 ? "red" : (data.cumplimiento >= 50 && data.cumplimiento <= 75) ? "orange" : "green"} className="circuloTable" />
+                                                    <p className="numerosTable">{data.cumplimiento}%</p>
+                                                </div>
+                                            </td>
                                             <td className="bodyTableText rightTableText">{data.area}</td>
                                             <td><img className="iconoHamburguesa" src={hamburguer} alt="si" /></td>
                                         </tr>
-                                        <tr style={{ height: "20px" }}></tr>
+                                        <tr style={{ height: "5px" }}></tr>
                                     </>
                                 )
                             })
                         }
                     </tbody>
                 </table>
-                <p className="bobyButton">Añadir elementos</p>
+                <p onClick={addPage} className="bobyButton">Añadir elementos</p>
             </div>
         </div>
     )
