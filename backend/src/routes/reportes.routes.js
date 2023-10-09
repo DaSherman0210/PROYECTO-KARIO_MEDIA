@@ -37,13 +37,3 @@ router.put('/:id', [
 ], updateReporte);
 
 export default router;
-
-/* 
-const reporteUpdated = {
-            usuario, 
-            indicador, 
-            asunto, 
-            descripcion,
-            estado
-        };
-*/
