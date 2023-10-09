@@ -1,4 +1,4 @@
-import React from "react";
+import axios from "axios";
 import "../assets/css/main.css";
 import bug from "../assets/svgs/bug.svg";
 import persona from "../assets/imagen.jpg";
@@ -9,9 +9,25 @@ import plus from "../assets/svgs/plus.svg";
 import gear from "../assets/svgs/gear.svg";
 import trash from "../assets/svgs/trash.svg";
 import reload from "../assets/svgs/reload.svg";
-import { Table, Thead, Tbody, Tr, Th, Td, TableContainer } from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
+import hamburguer from "../assets/svgs/hamburguer.svg";
+import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
+
 
 const Main = () => {
+
+    const [indicadores, setIndicadores] = useState([]);
+
+    useEffect(() => {
+        axios.get(`http://localhost:7779/indicadores`)
+            .then((response) => {
+                setIndicadores(response.data.result)
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    })
+
     return (
         <div className="mainPage">
             <div className="headerPage">
@@ -45,34 +61,47 @@ const Main = () => {
             <div className="bodyPage">
                 <h1 className="h1Page">Panel de Indicadores</h1>
                 <p className="firstTextPage">Aqui puedes visualizar los indicadores propuestos y añadidos por tu equipo de trabajo. Si quieres ver más detalles , dale click a uno de ellos para más información</p>
-                <Table className="tablePage">
-                    <Thead>
-                        <Tr className="trHeaderTable">
-                            <Th className="headerTableText">Indicador</Th>
-                            <Th className="headerTableText">Descripcion</Th>
-                            <Th className="headerTableText">Categoría</Th>
-                            <Th className="headerTableText">Fecha de Inicio</Th>
-                            <Th className="headerTableText">Fecha de Terminación</Th>
-                            <Th className="headerTableText">Fórmula</Th>
-                            <Th className="headerTableText">Frecuencia</Th>
-                            <Th className="headerTableText">Cumplimiento</Th>
-                            <Th className="headerTableText">Área</Th>
-                        </Tr>
-                    </Thead>
-                    <Tbody className="tbodieTable">
-                        <Tr className="trBodyTable">
-                            <Td className="bodyTableText">Modelador 3D</Td>
-                            <Td className="bodyTableText">Interés por dise………</Td>
-                            <Td className="bodyTableText">Baja</Td>
-                            <Td className="bodyTableText">12/05/21</Td>
-                            <Td className="bodyTableText">12/12/21</Td>
-                            <Td className="bodyTableText">Met.Ágil</Td>
-                            <Td className="bodyTableText">1/4</Td>
-                            <Td className="bodyTableText">31%</Td>
-                            <Td className="bodyTableText">Marketing</Td>
-                        </Tr>
-                    </Tbody>
-                </Table>
+                <table className="tablePage">
+                    <thead>
+                        <tr className="trHeaderTable">
+                            <th className="headerTableText">Indicador</th>
+                            <th className="headerTableText">Descripcion</th>
+                            <th className="headerTableText">Categoría</th>
+                            <th className="headerTableText">Fecha de Inicio</th>
+                            <th className="headerTableText">Fecha de Terminación</th>
+                            <th className="headerTableText">Fórmula</th>
+                            <th className="headerTableText">Frecuencia</th>
+                            <th className="headerTableText">Cumplimiento</th>
+                            <th className="headerTableText">Área</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody className="tbodieTable">
+                        {
+                            indicadores.map((data) => {
+                                return (
+                                    <>
+                                        <tr style={{ height: "20px" }}></tr>
+                                        <tr className="trBodyTable">
+                                            <td className="bodyTableText leftTableText">{data.nombre}</td>
+                                            <td className="bodyTableText izqData">{data.descripcion}</td>
+                                            <td className="bodyTableText">{data.categoria}</td>
+                                            <td className="bodyTableText">{data.fecha_inicio}</td>
+                                            <td className="bodyTableText">{data.fecha_terminacion}</td>
+                                            <td className="bodyTableText">{data.formula}</td>
+                                            <td className="bodyTableText">{data.frecuencia}</td>
+                                            <td className="bodyTableText circuloData"><CircularProgress value={data.cumplimiento}>{data.cumplimiento}</CircularProgress></td>
+                                            <td className="bodyTableText rightTableText">{data.area}</td>
+                                            <td><img className="iconoHamburguesa" src={hamburguer} alt="si" /></td>
+                                        </tr>
+                                        <tr style={{ height: "20px" }}></tr>
+                                    </>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
+                <p className="bobyButton">Añadir elementos</p>
             </div>
         </div>
     )
