@@ -11,23 +11,38 @@
     border-bottom: 1px solid grey;
 }
 
-.addHeader, .refreshHeader, .deleteHeader, .reportHeader, .helpHeader, .moreHeader {
+.addHeader,
+.refreshHeader,
+.deleteHeader,
+.reportHeader,
+.helpHeader,
+.moreHeader {
     display: flex;
+    cursor: pointer;
     align-items: center;
     justify-content: center;
 }
 
-.addHeader img, .refreshHeader img, .deleteHeader img, .reportHeader img, .helpHeader img {
+.addHeader img,
+.refreshHeader img,
+.deleteHeader img,
+.reportHeader img,
+.helpHeader img {
     width: 34px;
     height: 34px;
 }
 
-.addHeader p, .refreshHeader p, .deleteHeader p, .reportHeader p, .helpHeader p {
-    text-align: left;
-    font: normal normal normal 24px/34px Myriad Pro;
-    letter-spacing: 0px;
-    color: #000000;
+.addHeader p,
+.refreshHeader p,
+.deleteHeader p,
+.reportHeader p,
+.helpHeader p {
     opacity: 1;
+    text-align: left;
+    margin-bottom: 0;
+    color: #000000;
+    letter-spacing: 0px;
+    font: normal normal normal 24px/34px Myriad Pro;
 }
 
 .logoHeader {
@@ -79,9 +94,9 @@
 
 .tablePage {
     margin-top: 2rem;
-    border-collapse: collapse; 
-    border-spacing: 2rem; 
-    overflow: hidden; 
+    border-collapse: collapse;
+    border-spacing: 2rem;
+    overflow: hidden;
     width: 95%;
 }
 
@@ -104,26 +119,25 @@
     font: normal normal 300 24px/34px Myriad Pro;
     letter-spacing: 0px;
     color: #000000;
-    padding: 1rem;
     background: #f1f1f1;
 }
 
-.bodyTableText:first-child{
-  border-start-start-radius: 20px;
-  border-bottom-left-radius: 20px;
+.bodyTableText:first-child {
+    border-start-start-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
-.rightTableText{
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+.rightTableText {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
-.iconoHamburguesa{
+.iconoHamburguesa {
     width: 60px;
     height: 41px;
 }
 
-.bobyButton{
+.bobyButton {
     opacity: 1;
     width: 336px;
     height: 70px;
@@ -131,7 +145,8 @@
     cursor: pointer;
     color: #FFFFFF;
     margin-top: 2rem;
-    text-align: center; 
+    text-align: center;
+    margin-bottom: 2rem;
     align-items: center;
     border-radius: 35px;
     justify-content: center;
@@ -139,12 +154,26 @@
     background: #FF6F2C 0% 0% no-repeat padding-box;
 }
 
-.izqData{
+.izqData {
     text-align: left;
     font-size: 1.5rem;
 }
 
-.circuloData{
-    font-size: .5rem;
+.numerosTable {
+    position: relative;
+    bottom: 1.4rem;
+    font-size: 1rem;
 }
 
+.circuloTable {
+    position: relative;
+    top: 1.2rem;
+}
+
+.deleteDisable {
+    display: none;
+}
+
+.deleteEnable {
+    display: block;
+}
