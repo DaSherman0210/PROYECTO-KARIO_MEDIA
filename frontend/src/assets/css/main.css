@@ -122,6 +122,10 @@
     background: #f1f1f1;
 }
 
+.idIndicadorTable {
+    width: 10%;
+}
+
 .bodyTableText:first-child {
     border-start-start-radius: 20px;
     border-bottom-left-radius: 20px;
@@ -170,10 +174,9 @@
     top: 1.2rem;
 }
 
-.deleteDisable {
-    display: none;
-}
-
-.deleteEnable {
-    display: block;
+.idIndicador {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

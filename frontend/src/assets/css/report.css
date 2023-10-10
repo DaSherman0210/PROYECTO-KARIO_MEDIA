@@ -1,0 +1,23 @@
+* {
+   margin: 0;
+   padding: 0;
+}
+
+.reportMain {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.reportCard {
+   width: 700px;
+   display: flex;
+   margin-top: 2rem;
+   border-radius: 2rem;
+   align-items: center;
+   padding-bottom: 1rem;
+   margin-bottom: 2rem;
+   flex-direction: column;
+   justify-content: center;
+   background-color: #d8d8d8;
+}

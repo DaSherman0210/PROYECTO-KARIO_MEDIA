@@ -12,6 +12,19 @@
     justify-content: center;
 }
 
+.h1Div{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.h1Div .ah1{
+    color: #FF6F2C;
+    text-decoration: none;
+    position: relative;
+    top: 1rem;
+    right: 3rem;
+}
 
 .addMain .h1MainAdd{
     font-size: 3rem;
@@ -29,7 +42,7 @@
     margin-bottom:  2rem;
     flex-direction: column;
     justify-content: center;
-    background-color: rgb(216, 216, 216);
+    background-color: #d8d8d8;
 }
 
 .add2Main form{
