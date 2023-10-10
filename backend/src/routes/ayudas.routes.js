@@ -36,4 +36,57 @@ router.put('/:id', [
     validateDocuments
 ], updateAyuda);
 
+//TODO -- SCHEMAS
+/**
+ * @swagger
+ *      components:
+ *          schemas:
+ *              Ayudas:
+ *                  type: object
+ *                  properties:
+ *                      usuario:
+ *                          type: objectId
+ *                          description: nombre del usuario que necesita la ayuda
+ *                      asunto:
+ *                          type: string
+ *                          description: mini descripcion del problema
+ *                      descripcion:
+ *                          type: string
+ *                          description: descripcion del problema
+ *                      estado:
+ *                          type: boolean
+ *                          descripcion: estado de la ayuda
+ *                  required:
+ *                      -usuario
+ *                      -asunto
+ *                      -descripcion
+ *                  example:
+ *                      usuario: 6520334d9aad2e00d5ebd67e
+ *                      asunto: Pagina no carga
+ *                      descripcion: Ingrese a la pagina pero no me carga
+ *                      estado: true
+ *                          
+ */
+
+//TODO -- GET
+/**
+ * @swagger
+ * /ayudas:
+ *      get:
+ *          summary: Obtener las ayudas
+ *          tags: [Ayudas]
+ *          responses:
+ *              200:
+ *                  description: Se obtuvo con exito las ayudas
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              type: array
+ *                              items:
+ *                                  $ref: '#components/schemas/Ayudas'
+ *              400:
+ *                  description: No se pudo obtener las ayudas
+ *                  
+ */ 
+
 export default router;
