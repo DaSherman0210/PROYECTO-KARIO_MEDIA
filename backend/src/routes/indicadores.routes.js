@@ -27,9 +27,9 @@ router.post('/', [
     validateDocuments
 ], postIndicador);
 
-router.delete('/:id', [
-    validateJWT,
-    isAdminRole,
+router.put('/:id', [
+    //validateJWT,
+    //isAdminRole,
     check('id', 'No es un ID válido. INDICADORES.ROUTES.').isMongoId(),
     validateDocuments
 ], deleteIndicador);

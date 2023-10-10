@@ -46,7 +46,7 @@ router.put('/:id', [
  *                  properties:
  *                      usuario:
  *                          type: objectId
- *                          description: nombre del usuario que necesita la ayuda
+ *                          description: object id del usuario que necesita la ayuda
  *                      asunto:
  *                          type: string
  *                          description: mini descripcion del problema
@@ -83,10 +83,106 @@ router.put('/:id', [
  *                          schema:
  *                              type: array
  *                              items:
- *                                  $ref: '#components/schemas/Ayudas'
+ *                                  $ref: '#/components/schemas/Ayudas'
  *              400:
- *                  description: No se pudo obtener las ayudas
- *                  
+ *                  description: No se pudo obtener las ayudas      
  */ 
+
+//TODO -- GET ONE
+/**
+ * @swagger
+ * /ayudas/{id}:
+ *  get:
+ *      summary: Obtener una ayuda
+ *      tags: [Ayudas]
+ *      parameters:
+ *          -   in: path
+ *              name: id
+ *              schema:
+ *                  type: string
+ *              required: true
+ *              description: el id de la ayuda
+ *      responses:
+ *          200:
+ *              description: Obtenido correctamente
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: array
+ *                          items:
+ *                              $ref: '#/components/schemas/Ayudas'
+ *          400:
+ *              description: No se pudo obtener la ayuda
+ */
+
+//TODO -- POST
+/**
+ * @swagger
+ * /ayudas:
+ *      post:
+ *          summary: Añadir una ayuda
+ *          tags: [Ayudas]
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          $ref: '#/components/schemas/Ayudas'
+ *          responses:
+ *              200:
+ *                  description: Se agrego una ayuda
+ *              400:
+ *                  description: No se pudo agregar
+ */
+
+//TODO -- DELETE
+/**
+ * @swagger
+ * /ayudas/{id}:
+ *  delete:
+ *      summary: Eliminar una ayuda
+ *      tags: [Ayudas]
+ *      parameters:
+ *          -  in: path
+ *             name: id
+ *             schema:
+ *                 type: string
+ *             required: true
+ *             description:  El ayuda id
+ *      responses:
+ *          200:
+ *              description: Se elimino la ayuda
+ *          404:
+ *              description: No se pudo eliminar la ayuda
+ */
+
+//TODO -- UPDATE
+/**
+ * @swagger
+ * /ayudas/{id}:
+ *  put:
+ *      summary: Actualizar la ayuda
+ *      tags: [Ayudas]
+ *      parameters:
+ *          -   in: path
+ *              name: id
+ *              schema:
+ *                  type: string
+ *              required: true
+ *              description: La ayuda id
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
+ *                      $ref: '#/components/schemas/Ayudas'
+ *      responses:
+ *          200:
+ *              description: Se actualizo una ayuda
+ *          404:
+ *              description: No se pudo actualizar la ayuda
+ */
 
 export default router;
