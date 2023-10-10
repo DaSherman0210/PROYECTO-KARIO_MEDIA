@@ -1,6 +1,6 @@
 import axios from "axios";
 import "../assets/css/add.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Añadir = () => {
@@ -8,36 +8,63 @@ const Añadir = () => {
     const navigate = useNavigate();
 
     const [area, setArea] = useState("");
+    const [roles, setRoles] = useState("");
     const [nombre, setNombre] = useState("");
     const [formula, setFormula] = useState("");
     const [categoria, setCategoria] = useState("");
     const [frecuencia, setFrecuencia] = useState("");
     const [descripcion, setDescripcion] = useState("");
-    const [fecha_inicio, setFecha_inicio] = useState("");
     const [cumplimiento, setCumplimiento] = useState(0);
+    const [fecha_inicio, setFecha_inicio] = useState("");
     const [fecha_terminacion, setFecha_terminacion] = useState("");
+
+    useEffect(() => {
+        const rol = localStorage.getItem('rol')
+        try {
+            axios.get(`http://localhost:7778/roles/${rol}`)
+                .then((response) => {
+                    setRoles(response.data.result[0].rol)
+                })
+        } catch (error) {
+            console.log(error);
+        }
+    })
 
     const postIndicador = (e) => {
         e.preventDefault();
-        axios
-            .post(`http://localhost:7778/indicadores`, {
-                nombre,
-                categoria,
-                fecha_inicio,
-                fecha_terminacion,
-                formula,
-                frecuencia,
-                cumplimiento,
-                area,
-                descripcion
-            })
-            navigate("/");
+
+        const token = localStorage.getItem('token');
+
+        axios.defaults.headers.common["user-token"] = token;
+
+        if (roles === 'ADMIN' && token) {
+            axios
+                .post(`http://localhost:7778/indicadores`, {
+                    nombre,
+                    categoria,
+                    fecha_inicio,
+                    fecha_terminacion,
+                    formula,
+                    frecuencia,
+                    cumplimiento,
+                    area,
+                    descripcion
+                })
+            alert('Insertado con exito');
+            navigate('/');
+        }
+        else {
+            console.log('No es admin');
+        }
     }
 
     return (
         <div className="addMain">
             <div className="add2Main">
-                <p className="h1MainAdd">Añadir Indicador</p>
+                <div className="h1Div">
+                    <a href="/" className="ah1"> -Go back-</a>
+                    <p className="h1MainAdd">Añadir Indicador</p>
+                </div>
                 <form onSubmit={postIndicador}>
                     <div className="divAdd indicadorAdd">
                         <label>Indicador</label>

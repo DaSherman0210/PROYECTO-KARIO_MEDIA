@@ -12,47 +12,65 @@ import borrar from "../assets/svgs/delete.svg";
 import { useNavigate } from "react-router-dom";
 import reload from "../assets/svgs/reload.svg";
 import React, { useState, useEffect } from "react";
-import { CircularProgress } from '@chakra-ui/react';
+import { CircularProgress } from "@chakra-ui/react";
 import hamburguer from "../assets/svgs/hamburguer.svg";
 
-
 const Main = () => {
-
     const navigate = useNavigate();
 
     const [indicadores, setIndicadores] = useState([]);
+    const [showDeleteColumn, setShowDeleteColumn] = useState(false);
+    const [selectedIdToDelete, setSelectedIdToDelete] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:7778/indicadores`)
+        axios
+            .get(`http://localhost:7778/indicadores`)
             .then((response) => {
-                setIndicadores(response.data.result)
+                setIndicadores(response.data.result);
             })
             .catch((error) => {
                 console.log(error);
-            })
-    })
+            });
+    }, []);
 
-    const refreshPage = () =>{
-        navigate("/")
-    }
+    const handleImageClick = () => {
+        setShowDeleteColumn(!showDeleteColumn);
+    };
 
-    const addPage = () =>{
-        navigate("/add")
-    }
+    const refreshPage = () => {
+        navigate("/");
+    };
 
-    const mostrarELiminar = () => {
-        const disable = document.getElementsByClassName('deleteDisable');
-        for (let i = 0; i < disable.length; i++) {
-            disable.className = 'deleteEnable'; 
-            console.log(disable.className);
+    const addPage = () => {
+        navigate("/add");
+    };
+
+    const reportPage = () => {
+        navigate("/report");
+    };
+
+    const helpPage = () => {
+        navigate("/help");
+    };
+
+    const handleDelete = (id) => {
+        const aceptar = window.confirm("¿Deseas eliminar este elemento?");
+        if (aceptar) {
+            axios.delete(`http://localhost:7778/indicadores/${id}`)
+                .then(() => {
+                    setIndicadores(indicadores.filter((indicador) => indicador._id !== id))
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+            setIndicadores(indicadores.filter((indicador) => indicador._id !== id));
         }
-        console.log(disable);
-    }
+    };
 
     return (
         <div className="mainPage">
             <div className="headerPage">
-                <div className="addHeader" onClick={addPage} >
+                <div className="addHeader" onClick={addPage}>
                     <img src={plus} alt="la" />
                     <p>Añadir</p>
                 </div>
@@ -60,32 +78,34 @@ const Main = () => {
                     <img src={reload} alt="le" />
                     <p>Refrescar</p>
                 </div>
-                <div className="deleteHeader" onClick={mostrarELiminar}>
+                <div className="deleteHeader" onClick={handleImageClick}>
                     <img src={trash} alt="li" />
                     <p>Eliminar</p>
                 </div>
                 <img className="logoHeader" src={logo} alt="lo" />
-                <div className="reportHeader">
+                <div className="reportHeader" onClick={reportPage}>
                     <img src={bug} alt="lu" />
                     <p>Reportar</p>
                 </div>
-                <div className="helpHeader">
+                <div className="helpHeader" onClick={helpPage}>
                     <img src={help} alt="lulu" />
                     <p>Ayuda</p>
                 </div>
                 <div className="moreHeader">
-                    <img className="gearHeader" src={gear} alt="si" />
+                    <img className="gearHeader" src={gear} alt="si" onClick={handleImageClick} />
                     <img className="bellHeader" src={bell} alt="no" />
                     <img className="personaHeader" src={persona} alt="talvez" />
                 </div>
             </div>
             <div className="bodyPage">
                 <h1 className="h1Page">Panel de Indicadores</h1>
-                <p className="firstTextPage">Aqui puedes visualizar los indicadores propuestos y añadidos por tu equipo de trabajo. Si quieres ver más detalles , dale click a uno de ellos para más información</p>
+                <p className="firstTextPage">
+                    Aqui puedes visualizar los indicadores propuestos y añadidos por tu equipo de trabajo. Si quieres ver más detalles, dale click a uno de ellos para más información.
+                </p>
                 <table className="tablePage">
                     <thead>
                         <tr className="trHeaderTable">
-                            <th className="deleteDisable"></th>
+                            {showDeleteColumn && <th className="headerTableText">Eliminar</th>}
                             <th className="headerTableText">Indicador</th>
                             <th className="headerTableText">Descripcion</th>
                             <th className="headerTableText">Categoría</th>
@@ -99,40 +119,54 @@ const Main = () => {
                         </tr>
                     </thead>
                     <tbody className="tbodieTable">
-                        {
-                            indicadores.map((data) => {
-                                return (
-                                    <>
-                                        <tr style={{ height: "20px" }}></tr>
-                                        <tr className="trBodyTable">
-                                            <td className="deleteDisable"><img src={borrar} alt="si" /></td>
-                                            <td className="bodyTableText leftTableText">{data.nombre}</td>
-                                            <td className="bodyTableText izqData">{data.descripcion}</td>
-                                            <td className="bodyTableText">{data.categoria}</td>
-                                            <td className="bodyTableText">{data.fecha_inicio}</td>
-                                            <td className="bodyTableText">{data.fecha_terminacion}</td>
-                                            <td className="bodyTableText">{data.formula}</td>
-                                            <td className="bodyTableText">{data.frecuencia}</td>
-                                            <td className="bodyTableText">
-                                                <div>
-                                                    <CircularProgress value={data.cumplimiento} color={data.cumplimiento < 50 ? "red" : (data.cumplimiento >= 50 && data.cumplimiento <= 75) ? "orange" : "green"} className="circuloTable" />
-                                                    <p className="numerosTable">{data.cumplimiento}%</p>
-                                                </div>
-                                            </td>
-                                            <td className="bodyTableText rightTableText">{data.area}</td>
-                                            <td><img className="iconoHamburguesa" src={hamburguer} alt="si" /></td>
-                                        </tr>
-                                        <tr style={{ height: "5px" }}></tr>
-                                    </>
-                                )
-                            })
-                        }
+                        {indicadores.map((data) => (
+                            <React.Fragment key={data._id}>
+                                <tr style={{ height: "20px" }}></tr>
+                                <tr className="trBodyTable">
+                                    {showDeleteColumn && (
+                                        <td className="bodyTableText" onClick={() => handleDelete(data._id)}>
+                                            <img src={borrar} alt="si" />
+                                        </td>
+                                    )}
+                                    <td className="bodyTableText leftTableText">{data.nombre}</td>
+                                    <td className="bodyTableText izqData">{data.descripcion}</td>
+                                    <td className="bodyTableText">{data.categoria}</td>
+                                    <td className="bodyTableText">{data.fecha_inicio}</td>
+                                    <td className="bodyTableText">{data.fecha_terminacion}</td>
+                                    <td className="bodyTableText">{data.formula}</td>
+                                    <td className="bodyTableText">{data.frecuencia}</td>
+                                    <td className="bodyTableText">
+                                        <div>
+                                            <CircularProgress
+                                                value={data.cumplimiento}
+                                                color={
+                                                    data.cumplimiento < 50
+                                                        ? "red"
+                                                        : data.cumplimiento >= 50 && data.cumplimiento <= 75
+                                                        ? "orange"
+                                                        : "green"
+                                                }
+                                                className="circuloTable"
+                                            />
+                                            <p className="numerosTable">{data.cumplimiento}%</p>
+                                        </div>
+                                    </td>
+                                    <td className="bodyTableText rightTableText">{data.area}</td>
+                                    <td>
+                                        <img className="iconoHamburguesa" src={hamburguer} alt="si" />
+                                    </td>
+                                </tr>
+                                <tr style={{ height: "5px" }}></tr>
+                            </React.Fragment>
+                        ))}
                     </tbody>
                 </table>
-                <p onClick={addPage} className="bobyButton">Añadir elementos</p>
+                <p onClick={addPage} className="bobyButton">
+                    Añadir elementos
+                </p>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Main;
