@@ -56,7 +56,7 @@ const Main = () => {
     const handleDelete = (id) => {
         const aceptar = window.confirm("¿Deseas eliminar este elemento?");
         if (aceptar) {
-            axios.delete(`http://localhost:7778/indicadores/${id}`)
+            axios.put(`http://localhost:7778/indicadores/${id}`)
                 .then(() => {
                     setIndicadores(indicadores.filter((indicador) => indicador._id !== id))
                 })
@@ -66,6 +66,10 @@ const Main = () => {
             setIndicadores(indicadores.filter((indicador) => indicador._id !== id));
         }
     };
+
+    /* const logout = () => {
+        
+    } */
 
     return (
         <div className="mainPage">
