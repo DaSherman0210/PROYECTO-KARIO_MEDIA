@@ -38,8 +38,6 @@ const getIndicadores = async (req, res) => {
         res.status(404).json({
           msg: "Error al obtener los indicadores de la base de datos.",
         });
-      } finally {
-        client.close();
       }
 }
 
@@ -59,7 +57,6 @@ const getIndicadorById = async (req, res) => {
               result,
             });
           }
-          client.close();
     } catch (error) {
         console.log(
           error,
@@ -102,8 +99,6 @@ const postIndicador = async (req, res) => {
         res.status(404).json({
           msg: "Error al agregar un nuevo indicador a la base de datos.",
         });
-      } finally {
-        client.close();
       }
 }
 

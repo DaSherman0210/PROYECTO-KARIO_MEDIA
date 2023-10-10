@@ -38,8 +38,6 @@ const getAyudas = async (req, res) => {
       res.status(404).json({
         msg: "Error al obtener las ayudas de la base de datos.",
       });
-    } finally {
-      client.close();
     }
   };
 
@@ -59,7 +57,6 @@ const getAyudas = async (req, res) => {
           result,
         });
       }
-      client.close();
     } catch (error) {
       console.log(
         error,
@@ -96,8 +93,6 @@ const getAyudas = async (req, res) => {
       res.status(404).json({
         msg: "Error al agregar una nueva ayuda a la base de datos.",
       });
-    } finally {
-      client.close();
     }
   };
 
@@ -118,8 +113,6 @@ const getAyudas = async (req, res) => {
       res.status(404).json({
         msg: "Error al eliminar la ayuda de la base de datos",
       });
-    } finally {
-      client.close();
     }
   };
 
@@ -152,8 +145,6 @@ const getAyudas = async (req, res) => {
         res.status(500).json({
           msg: "Error al actualizar ayuda en la base de datos",
         });
-      } finally {
-        client.close();
       }
 }
   export {
