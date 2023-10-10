@@ -1,11 +1,14 @@
-import express from "express";
 import cors from "cors";
+import express from "express";
 import rolRoutes from "../routes/roles.routes.js";
-import usuarioRoutes from "../routes/usuarios.routes.js";
 import authRoutes from "../routes/auth.routes.js";
-import indicadorRoutes from "../routes/indicadores.routes.js";
-import reportesRoutes from "../routes/reportes.routes.js";
 import ayudasRoutes from "../routes/ayudas.routes.js";
+import usuarioRoutes from "../routes/usuarios.routes.js";
+import reportesRoutes from "../routes/reportes.routes.js";
+import indicadorRoutes from "../routes/indicadores.routes.js";
+
+import swaggerUI from "swagger-ui-express";
+import swaggerSpec from "../../swaggerConfig.js"; 
 
 class Server {
   constructor() {
@@ -17,7 +20,8 @@ class Server {
       authPath:       "/auth",
       indicadorPath:  "/indicadores",
       reportesPath:   "/reportes",
-      ayudasPath:     "/ayudas"
+      ayudasPath:     "/ayudas",
+      documentationPath: "/documentation"
     };
 
     // Middlewares
@@ -45,6 +49,7 @@ class Server {
     this.app.use(this.paths.indicadorPath, indicadorRoutes);
     this.app.use(this.paths.reportesPath, reportesRoutes);
     this.app.use(this.paths.ayudasPath, ayudasRoutes);
+    this.app.use(this.paths.documentationPath, swaggerUI.serve, swaggerUI.setup(swaggerSpec))
   }
 
   listen() {
