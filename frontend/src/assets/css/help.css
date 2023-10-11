@@ -1,0 +1,69 @@
+*{
+   margin: 0;
+   padding: 0;
+}
+
+.helpMain {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.helpCard {
+   width: 700px;
+   display: flex;
+   margin-top: 2rem;
+   border-radius: 2rem;
+   align-items: center;
+   padding-bottom: 1rem;
+   margin-bottom: 2rem;
+   flex-direction: column;
+   justify-content: center;
+   background-color: #d8d8d8;
+   margin-top: 17rem;
+}
+
+.h1Help{
+   font-size: 3rem;
+   margin: 1rem 4rem 1rem 1rem;
+}
+
+.formHelp{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap: 1rem;
+   margin-bottom: 1rem;
+}
+
+.divHelp{
+   gap: .5rem;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.labelHelp{
+   font-size: 1rem;
+}
+
+.inputHelp{
+   border: 0;
+   width: 605px;
+   height: 40px;
+   font-size: 1rem;
+   padding-left: 1rem;
+   border-radius: 1rem;
+   background-color: white;
+}
+
+@media (max-width: 400px){
+   .helpCard{
+      width: 350px;
+   }
+
+   .inputHelp{
+      width: 300px;
+   }
+}

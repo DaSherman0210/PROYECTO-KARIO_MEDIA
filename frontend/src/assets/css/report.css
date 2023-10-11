@@ -7,6 +7,7 @@
    display: flex;
    align-items: center;
    justify-content: center;
+   margin-top: 13rem;
 }
 
 .reportCard {
@@ -20,4 +21,91 @@
    flex-direction: column;
    justify-content: center;
    background-color: #d8d8d8;
+}
+
+.divCard{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.divCard a{
+   text-decoration: none;
+   color: #FF6F2C;
+}
+
+.h1Report{
+   margin: 2rem;
+   font-size: 3rem;
+}
+
+.formReport{
+   gap: 1rem;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   justify-content: center;
+   padding-bottom: 1rem;
+}
+
+.divReport{
+   gap: .5rem;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.labelReport{
+   font-size: 1rem;
+}
+
+.selectReport{
+   border: 0;
+   width: 620px;
+   height: 40px;
+   font-size: 1rem;
+   padding-left: 1rem;
+   border-radius: 1rem;
+   background-color: white;
+}
+
+.inputReport{
+   border: 0;
+   width: 605px;
+   height: 40px;
+   font-size: 1rem;
+   padding-left: 1rem;
+   border-radius: 1rem;
+   background-color: white;
+}
+
+@media (max-width: 400px){
+
+   .h1Report{
+      font-size: 2rem;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      margin: 1rem 0 1rem 0;
+   }
+
+   .reportCard{
+      width: 340px;
+   }
+
+   .selectReport{
+      width: 310px;
+   }
+
+   .inputReport{
+      width: 300px;
+   }
+
+   .reportMain{
+      margin-top: 10rem ;
+   }
+
+   .divCard a{
+      margin-left: 1rem;
+   }
 }
