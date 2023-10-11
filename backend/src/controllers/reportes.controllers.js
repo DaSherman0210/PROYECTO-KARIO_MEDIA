@@ -1,4 +1,3 @@
-import express from "express";
 import { MongoClient, ObjectId } from "mongodb";
 import dotenv from "dotenv";
 dotenv.config();
@@ -38,8 +37,6 @@ const getReportes = async (req, res) => {
         res.status(404).json({
           msg: "Error al obtener los reportes de la base de datos.",
         });
-      } finally {
-        client.close();
       }
 }
 
@@ -76,8 +73,8 @@ const postReporte = async (req, res) => {
         const collection = await connectToMongo();
         const { usuario, indicador, asunto, descripcion, estado } = req.body; 
         const reporte = {
-            usuario, 
-            indicador, 
+            usuario: new ObjectId(usuario), 
+            indicador: new ObjectId(indicador), 
             asunto, 
             descripcion,
             estado: true
@@ -97,9 +94,7 @@ const postReporte = async (req, res) => {
         res.status(404).json({
           msg: "Error al agregar un nuevo reporte a la base de datos.",
         });
-      } finally {
-        client.close();
-      }
+      } 
 }
 
 const deleteReporte = async (req, res) => {
@@ -119,8 +114,6 @@ const deleteReporte = async (req, res) => {
         res.status(404).json({
           msg: "Error al eliminar el reporte de la base de datos",
         });
-      } finally {
-        client.close();
       }
 }
 
@@ -157,8 +150,6 @@ const updateReporte = async (req, res) => {
         res.status(500).json({
           msg: "Error al actualizar reporte en la base de datos",
         });
-      } finally {
-        client.close();
       }
 }
 

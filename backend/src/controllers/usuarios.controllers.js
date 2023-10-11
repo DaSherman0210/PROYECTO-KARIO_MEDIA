@@ -26,7 +26,25 @@ const getUsuarios = async (req, res) => {
   try {
     const collection = await connectToMongo();
     const query = { estado: true };
-    const result = await collection.find(query).toArray();
+    const result = await collection.aggregate([
+    
+      {
+          $lookup: {
+            from: "roles",
+            localField: "rol",
+            foreignField: "_id",
+            as: "nombreRol"
+          }
+      },
+      {
+          $unwind: "$nombreRol"
+      },
+      {
+          $project: {
+            "nombreRol._id": 0
+          }
+      }
+  ]).toArray();
     res.status(202).json({
       msg: "Usuarios obtenidos de la base de datos.",
       result,
@@ -39,8 +57,6 @@ const getUsuarios = async (req, res) => {
     res.status(404).json({
       msg: "Error al obtener los usuarios de la base de datos.",
     });
-  } finally {
-    client.close();
   }
 };
 
@@ -48,8 +64,27 @@ const getUsuarioById = async (req, res) => {
   try {
     const collection = await connectToMongo();
     const query = { _id: new ObjectId(req.params.id), estado: true };
-    const result = await collection.find(query).toArray();
-
+    const result = await collection.aggregate([
+      {
+        $match: query
+      },
+      {
+          $lookup: {
+            from: "roles",
+            localField: "rol",
+            foreignField: "_id",
+            as: "nombreRol"
+          }
+      },
+      {
+          $unwind: "$nombreRol"
+      },
+      {
+          $project: {
+            "nombreRol._id": 0
+          }
+      }
+  ]).toArray();
     if (result.length === 0) {
       res.status(404).json({
         msg: "El usuario solicitado por ID está inactivo o no se encuentra en la base de datos.",
@@ -60,7 +95,6 @@ const getUsuarioById = async (req, res) => {
         result,
       });
     }
-    client.close();
   } catch (error) {
     console.log(
       error,
@@ -114,8 +148,6 @@ const postUsuario = async (req, res) => {
     res.status(404).json({
       msg: "Error al agregar un nuevo usuario a la base de datos.",
     });
-  } finally {
-    client.close();
   }
 };
 
@@ -136,8 +168,6 @@ const deleteUsuario = async (req, res) => {
     res.status(404).json({
       msg: "Error al eliminar el usuario de la base de datos",
     });
-  } finally {
-    client.close();
   }
 };
 
@@ -177,8 +207,6 @@ const updateUsuario = async (req, res) => {
     res.status(500).json({
       msg: "Error al actualizar usuario en la base de datos",
     });
-  } finally {
-    client.close();
   }
 };
 

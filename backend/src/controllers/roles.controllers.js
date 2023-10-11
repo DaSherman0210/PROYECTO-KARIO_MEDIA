@@ -35,8 +35,6 @@ const getRoles = async (req, res) => {
     res.status(404).json({
       msg: "Error al obtener los roles de la base de datos",
     });
-  } finally {
-    client.close();
   }
 };
 
@@ -56,7 +54,6 @@ const getRolById = async (req, res) => {
         result,
       });
     }
-    client.close();
   } catch (error) {
     console.error(error, "Error al obtener rol por ID de la base de datos");
     res.status(500).json({
@@ -86,8 +83,6 @@ const postRol = async (req, res) => {
     res.status(400).json({
       msg: "Error al agregar el rol a la base de datos.",
     });
-  } finally {
-    client.close();
   }
 };
 
@@ -106,8 +101,6 @@ const deleteRol = async (req, res) => {
     res.status(400).json({
       msg: "Error al eliminar rol de la base de datos.",
     });
-  } finally {
-    client.close();
   }
 };
 
@@ -139,8 +132,6 @@ const updateRol = async (req, res) => {
     res.status(400).json({
       msg: "Error al actualizar rol de la base de datos.",
     });
-  } finally {
-    client.close();
   }
 };
 

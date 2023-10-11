@@ -73,13 +73,13 @@ const getAyudas = async (req, res) => {
       const collection = await connectToMongo();
       const { usuario, asunto, descripcion, estado } = req.body;
       const ayuda = {
-        usuario, 
+        usuario: new ObjectId(usuario), 
         asunto, 
         descripcion, 
         estado: true
       };
     
-      const result = await collection.insertOne(usuario);
+      const result = await collection.insertOne(ayuda);
       res.status(202).json({
         msg: "Ayuda agregada correctamente a la base de datos.",
         ayuda,
