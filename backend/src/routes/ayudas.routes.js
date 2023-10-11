@@ -14,7 +14,6 @@ router.get('/:id', [
 ], getAyudaById);
 router.post('/', [
     validateJWT,
-    isAdminRole,
     check('usuario', 'El usuario es obligatorio. AYUDAS.ROUTES').not().isEmpty(),
     check('usuario', 'ID de usuario no válido. AYUDAS.ROUTES').isMongoId(),
     check('asunto', 'El asunto es obligatorio. REPORTES.ROUTES').not().isEmpty(),
@@ -122,6 +121,13 @@ router.put('/:id', [
  *      post:
  *          summary: Añadir una ayuda
  *          tags: [Ayudas]
+ *          parameters:
+ *              -   in: header
+ *                  name: user-token
+ *                  description: Token de validacion
+ *                  required: true
+ *                  schema:
+ *                      type: string
  *          requestBody:
  *              required: true
  *              content:
@@ -150,6 +156,12 @@ router.put('/:id', [
  *                 type: string
  *             required: true
  *             description:  El ayuda id
+ *          -   in: header
+ *              name: user-token
+ *              description: Token de validacion
+ *              required: true
+ *              schema:
+ *                  type: string
  *      responses:
  *          200:
  *              description: Se elimino la ayuda
@@ -165,12 +177,18 @@ router.put('/:id', [
  *      summary: Actualizar la ayuda
  *      tags: [Ayudas]
  *      parameters:
- *          -   in: path
- *              name: id
+ *          -  in: path
+ *             name: id
+ *             schema:
+ *                 type: string
+ *             required: true
+ *             description:  El ayuda id
+ *          -   in: header
+ *              name: user-token
+ *              description: Token de validacion
+ *              required: true
  *              schema:
  *                  type: string
- *              required: true
- *              description: La ayuda id
  *      requestBody:
  *          required: true
  *          content:
