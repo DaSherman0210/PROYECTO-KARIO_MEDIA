@@ -19,8 +19,9 @@ const Main = () => {
     const navigate = useNavigate();
 
     const [indicadores, setIndicadores] = useState([]);
+    const [showSelect, setShowSelect] = useState(false);
     const [showDeleteColumn, setShowDeleteColumn] = useState(false);
-    const [selectedIdToDelete, setSelectedIdToDelete] = useState(null);
+    /* const [selectedIdToDelete, setSelectedIdToDelete] = useState(null); */
 
     useEffect(() => {
         axios
@@ -35,6 +36,10 @@ const Main = () => {
 
     const handleImageClick = () => {
         setShowDeleteColumn(!showDeleteColumn);
+    };
+
+    const toggleSelect = () => {
+        setShowSelect(!showSelect);
     };
 
     const refreshPage = () => {
@@ -67,9 +72,18 @@ const Main = () => {
         }
     };
 
-    /* const logout = () => {
-        
-    } */
+    const logout = () => {
+        const confirmar = window.confirm('¿Desea cerrar sesión?');
+        if(confirmar){
+            localStorage.removeItem('token');
+            localStorage.removeItem('id');
+            localStorage.removeItem('rol');
+
+            navigate('/login');
+        } else {
+            console.log('Logout cancelado.');
+        }
+    }
 
     return (
         <div className="mainPage">
@@ -96,7 +110,17 @@ const Main = () => {
                     <p>Ayuda</p>
                 </div>
                 <div className="moreHeader">
-                    <img className="gearHeader" src={gear} alt="si" onClick={handleImageClick} />
+                <img className="gearHeader" src={gear} alt="si" onClick={toggleSelect} />
+                {showSelect && (
+                    <select onChange={(e) => {
+                        if (e.target.value === "Cerrar sesión") {
+                            logout();
+                        }
+                    }}>
+                        <option>Seleccione una opción</option>
+                        <option>Cerrar sesión</option>
+                    </select>
+                )}
                     <img className="bellHeader" src={bell} alt="no" />
                     <img className="personaHeader" src={persona} alt="talvez" />
                 </div>
@@ -147,8 +171,8 @@ const Main = () => {
                                                     data.cumplimiento < 50
                                                         ? "red"
                                                         : data.cumplimiento >= 50 && data.cumplimiento <= 75
-                                                        ? "orange"
-                                                        : "green"
+                                                            ? "orange"
+                                                            : "green"
                                                 }
                                                 className="circuloTable"
                                             />

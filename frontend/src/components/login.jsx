@@ -29,7 +29,8 @@ const Login = () => {
             if (logueo) {
                 localStorage.setItem('token', logueo.data.token);
                 localStorage.setItem('rol', logueo.data.usuario.rol);
-                navigate("/");
+                localStorage.setItem('id', logueo.data.usuario._id);
+                navigate("/dashboard");
                 return logueo;
             }
 
