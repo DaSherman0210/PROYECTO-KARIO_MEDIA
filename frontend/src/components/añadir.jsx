@@ -6,6 +6,11 @@ import { useNavigate } from "react-router-dom";
 const Añadir = () => {
 
     const navigate = useNavigate();
+    const token = localStorage.getItem('token')
+
+    if (!token) {
+        navigate("/")
+    }
 
     const [area, setArea] = useState("");
     const [roles, setRoles] = useState("");
@@ -21,10 +26,15 @@ const Añadir = () => {
     useEffect(() => {
         const rol = localStorage.getItem('rol')
         try {
-            axios.get(`http://localhost:7778/roles/${rol}`)
+            if (rol) {
+                axios.get(`http://localhost:7778/roles/${rol}`)
                 .then((response) => {
                     setRoles(response.data.result[0].rol)
-                })
+                })   
+            }else{
+                console.log('No se encontro el rol');
+                navigate("/")
+            }
         } catch (error) {
             console.log(error);
         }

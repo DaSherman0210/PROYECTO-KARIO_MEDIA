@@ -13,25 +13,26 @@ const Dashboard = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             navigate("/");
-        }, 2000);
+        }, 3000);
         return () => clearTimeout(timer);
     }, [navigate]);
 
     useEffect(() => {
         const idUsuario = localStorage.getItem('id');
-        const idRol = localStorage.getItem('rol');
-        console.log(idRol);
-        console.log(idUsuario);
-        axios
+        if (idUsuario) {
+            axios
             .get(`http://localhost:7778/usuarios/${idUsuario}`)
             .then((response) => {
+                console.log(response.data.result[0].imagen);
                 setDataUsuario(response.data.result);
-                console.log(response.data);
             })
             .catch((error) => {
                 console.log(error, "Error al obtener usuario por ID.");
-            })
-    }, [])
+            })   
+        }else{
+            navigate("/")
+        }
+    }, [navigate])
 
     return (
         <div className="main">

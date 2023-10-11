@@ -6,6 +6,11 @@ import React, { useState, useEffect } from "react";
 const Report = () => {
 
    const navigate = useNavigate();
+   const token = localStorage.getItem("token");
+
+   if (!token) {
+      navigate("/")
+   }
 
    const [roles, setRoles] = useState("");
    const [asunto, setAsunto] = useState("");
@@ -17,10 +22,14 @@ const Report = () => {
    useEffect(() => {
       const rol = localStorage.getItem('rol')
       try {
-         axios.get(`http://localhost:7778/roles/${rol}`)
+         if (rol) {
+            axios.get(`http://localhost:7778/roles/${rol}`)
             .then((response) => {
                setRoles(response.data.result[0].rol)
-            })
+            })   
+         }else{
+            console.log('No se encontró el rol');
+         }
       } catch (error) {
          console.log(error);
       }

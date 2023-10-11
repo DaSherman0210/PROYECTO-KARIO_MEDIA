@@ -1,11 +1,18 @@
 import axios from "axios";
 import "../assets/css/help.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Help = () => {
 
    const navigate = useNavigate();
+   const token = localStorage.getItem('token');
+
+   useEffect(()=>{
+      if (!token) {
+         navigate("/")
+      }
+   })
 
    const [asunto, setAsunto] = useState("");
    const usuario = localStorage.getItem('id');
@@ -14,7 +21,6 @@ const Help = () => {
    const agregarAyuda = (e) => {
       e.preventDefault();
 
-      const token = localStorage.getItem('token');
       axios.defaults.headers.common["user-token"] = token;
 
       console.log({

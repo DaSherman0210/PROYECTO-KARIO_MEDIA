@@ -1,7 +1,6 @@
 import axios from "axios";
 import "../assets/css/main.css";
 import bug from "../assets/svgs/bug.svg";
-import persona from "../assets/imagen.jpg";
 import bell from "../assets/svgs/bell.svg";
 import help from "../assets/svgs/help.svg";
 import logo from "../assets/logoKario.png";
@@ -16,8 +15,15 @@ import { CircularProgress } from "@chakra-ui/react";
 import hamburguer from "../assets/svgs/hamburguer.svg";
 
 const Main = () => {
+    
     const navigate = useNavigate();
+    const token = localStorage.getItem('token');
+    
+    if (!token) {
+        navigate("/")
+    }
 
+    const [imagen, setImagen] = useState("");
     const [indicadores, setIndicadores] = useState([]);
     const [showSelect, setShowSelect] = useState(false);
     const [showDeleteColumn, setShowDeleteColumn] = useState(false);
@@ -85,6 +91,19 @@ const Main = () => {
         }
     }
 
+    useEffect(() => {
+        const idUsuario = localStorage.getItem('id');
+        console.log(idUsuario);
+        axios
+            .get(`http://localhost:7778/usuarios/${idUsuario}`)
+            .then((response) => {
+                setImagen(response.data.result[0].imagen);
+            })
+            .catch((error) => {
+                console.log(error, "Error al obtener usuario por ID.");
+            })
+    }, [])
+
     return (
         <div className="mainPage">
             <div className="headerPage">
@@ -122,7 +141,7 @@ const Main = () => {
                     </select>
                 )}
                     <img className="bellHeader" src={bell} alt="no" />
-                    <img className="personaHeader" src={persona} alt="talvez" />
+                    <img className="personaHeader" src={imagen} alt="talvez" />
                 </div>
             </div>
             <div className="bodyPage">
@@ -130,7 +149,7 @@ const Main = () => {
                 <p className="firstTextPage">
                     Aqui puedes visualizar los indicadores propuestos y añadidos por tu equipo de trabajo. Si quieres ver más detalles, dale click a uno de ellos para más información.
                 </p>
-                <table className="tablePage">
+                <table className="tablePage" >
                     <thead>
                         <tr className="trHeaderTable">
                             {showDeleteColumn && <th className="headerTableText">Eliminar</th>}
