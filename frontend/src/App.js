@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import Main from './components/main';
 import Logo from './components/logo';
+import Help from './components/help';
 import Login from './components/login';
 import Añadir from './components/añadir';
 import Report from './components/report';
@@ -19,6 +20,7 @@ function App() {
           <Route exact path='/main' Component={Main} />
           <Route exact path='/add' Component={Añadir} />
           <Route exact path='/report' Component={Report} />
+          <Route exact path='/help' Component={Help} />
         </Routes>
       </Router>
     </div >
