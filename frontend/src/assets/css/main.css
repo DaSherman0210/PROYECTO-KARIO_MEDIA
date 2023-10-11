@@ -134,6 +134,7 @@
 .rightTableText {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+    padding-right: 1rem;
 }
 
 .iconoHamburguesa {
@@ -161,6 +162,7 @@
 .izqData {
     text-align: left;
     font-size: 1.5rem;
+    max-width: 200px;
 }
 
 .numerosTable {
