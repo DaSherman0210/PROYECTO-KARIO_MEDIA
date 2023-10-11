@@ -2,9 +2,9 @@
 
 
 ## 📋 Descripcion 
-<p>Un desarollador Full-syack es solicitadi eb hacer la continuacion del proyecto de desarrolo de un aplicativo web que pueda mostrar el panel de gestionamiento de proyectos y sus modulos necesarios para la empresa "kario media ña cuañ reañiza ñicitaciones publicas y privadas de varios nicho de negocio. El equipo de UI/UX hace una entrega formal del primer flujo de entranda para la parte admisnistrativa en el cual va desde su login hasta el acceso a su panel administrativo 
+<p>Un desarollador Full-syack es solicitado en hacer la continuacion del proyecto de desarrollo de un aplicativo web que pueda mostrar el panel de gestionamiento de proyectos y sus modulos necesarios para la empresa "kario media", la cual realiza licitaciones publicas y privadas de varios nichos de negocio. El equipo de UI/UX hace una entrega formal del primer flujo de entranda para la parte administrativa en el cual va desde su login hasta el acceso a su panel administrativo.
 
-Dicho esto el proposito de este trabajo es replicar la propuesta dad por parte del equipo de UI/UX y crear los modulos de <strong>"añadir", "eliminar" "reportar" "ayuda" y "perfil (Log-In y Log-Out)"</strong> manteniendo el flujo de diseño propuesto previamente 
+Dicho esto el proposito de este trabajo es replicar la propuesta dada por parte del equipo de UI/UX y crear los modulos de <strong>"añadir", "eliminar" "reportar" "ayuda" y "perfil (Log-In y Log-Out)"</strong> manteniendo el flujo de diseño propuesto previamente.
 </p>
 
 ##  🚀 integrantes 
@@ -19,8 +19,9 @@ Dicho esto el proposito de este trabajo es replicar la propuesta dad por parte d
 
 ![logo](./frontend/src/assets/imgs/database.jpeg)
 
- <p>la estructura de base de datos consta de varias tablas que estan diseañadas para gestionar informacion relacionada con usuarios roles asistenciua indicadores y reportes. Acontinuacion explicamos cada tabla y sus campos  </p>
-
+ <p>la estructura de base de datos consta de varias tablas que estan diseñadas para gestionar informacion relacionada con usuarios, roles, asistencia, indicadores y reportes. 
+ 
+ Acontinuacion explicamos cada tabla y sus campos:  </p>
 
 <h3>👤 Usuarios:</h3>
 
@@ -30,16 +31,16 @@ Dicho esto el proposito de este trabajo es replicar la propuesta dad por parte d
 
 <li> <strong> correo: </strong> La dirección de correo electrónico del usuario.
 
-<li> <strong> password: </strong> La contraseña del usuario (debe estar almacenada de manera segura, como un hash).
+<li> <strong> password: </strong> La contraseña del usuario (La cual es almacenada de forma encriptada).
 
 <li> <strong> Rol: </strong> El rol o nivel de acceso del usuario (podría ser un valor como "administrador", "usuario", etc.).
 
-<li> <strong> Estado: </strong> El estado del usuario (activo, inactivo, etc.).
+<li> <strong> Estado: </strong> El estado del usuario (true: activo, false: inactivo).
 
 
 <h3>👥 Rol:</h3>
 
-<li> <strong> Rol: </strong> Una tabla que posiblemente almacena diferentes roles que los usuarios pueden tener en el sistema. Puede estar relacionada con la tabla de "Usuarios" a través de una clave externa.
+<li> <strong> Rol: </strong> Una tabla que almacena diferentes roles que los usuarios tienen dentro de el sistema. Esta relacionada con la tabla de "Usuarios" a través de una clave externa.
 
 <h3> 🤝 Ayuda:</h3>
 
@@ -69,9 +70,7 @@ Dicho esto el proposito de este trabajo es replicar la propuesta dad por parte d
 
 <li> <strong> Area:</strong> El área o departamento responsable del indicador.
 
-<li> <strong> Estado: </strong>El estado del indicador (activo, inactivo, etc.).
-
-<li> <strong> Reportes:</strong> Puede ser una relación con la tabla "Reportes" para almacenar informes relacionados con este indicador.
+<li> <strong> Estado: </strong>El estado del indicador (true: activo, false: inactivo).
 
 <h3> 📝 Reportes: </h3>
 
@@ -87,7 +86,7 @@ Dicho esto el proposito de este trabajo es replicar la propuesta dad por parte d
 
 ## 📚    Inicializar el proyecto 
 
-Primero se debe agregar en la carpeta backend el archivo **.env**, copiar la estructura que se encuentra en el archivo **.env.example** y cambiarle los datos por los siguientes: 
+Primero se debe agregar en la carpeta backend el archivo **.env**, copiar la estructura que se encuentra en el archivo **.env.example** y cambiarle los datos por los siguientes (El lugar de "password" se debe cambiar por una clave la cual se le proporcionará al profesor externamente): 
 
 PORT= "7778"
 
