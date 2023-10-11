@@ -155,6 +155,13 @@ router.put(
  *  post:
  *    summary: Agregar usuario
  *    tags: [Usuarios]
+ *    parameters:
+ *      -   in: header
+ *          name: user-token
+ *          description: Token de validacion
+ *          required: true
+ *          schema:
+ *             type: string
  *    requestBody:
  *      required: true
  *      content:
@@ -183,6 +190,12 @@ router.put(
  *          type: string
  *        required: true
  *        description: El usuario id
+ *      -   in: header
+ *          name: user-token
+ *          description: Token de validacion
+ *          required: true
+ *          schema:
+ *             type: string
  *    responses:
  *      200:
  *        description: Se elimino al usuario exitosamente
@@ -204,6 +217,12 @@ router.put(
  *            type: string
  *          required: true
  *          description: El usuario id
+ *        -   in: header
+ *            name: user-token
+ *            description: Token de validacion
+ *            required: true
+ *            schema:
+ *                type: string
  *      requestBody:
  *        required: true
  *        content:

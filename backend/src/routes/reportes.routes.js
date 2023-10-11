@@ -125,6 +125,13 @@ router.put('/:id', [
  *      post:
  *          summary: Añadir un reporte
  *          tags: [Reportes]
+ *          parameters:
+ *              -   in: header
+ *                  name: user-token
+ *                  description: Token de validacion
+ *                  required: true
+ *                  schema:
+ *                      type: string
  *          requestBody:
  *              required: true
  *              content:
@@ -153,6 +160,12 @@ router.put('/:id', [
  *                  type: string
  *              required: true
  *              description: El id del reporte
+ *          -   in: header
+ *              name: user-token
+ *              description: Token de validacion
+ *              required: true
+ *              schema:
+ *                  type: string
  *      responses:
  *          200:
  *              description: Se elimino el reporte
@@ -174,6 +187,12 @@ router.put('/:id', [
  *                      type: string
  *                  required: true
  *                  description: El reporte id
+ *              -   in: header
+ *                  name: user-token
+ *                  description: Token de validacion
+ *                  required: true
+ *                  schema:
+ *                      type: string
  *          requestBody:
  *              required: true
  *              content:

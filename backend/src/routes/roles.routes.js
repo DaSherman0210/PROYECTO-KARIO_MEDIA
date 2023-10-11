@@ -118,6 +118,13 @@ router.put("/:id", [
  *    post:
  *      summary: Post roles
  *      tags: [Roles]
+ *      parameters:
+ *          -   in: header
+ *              name: user-token
+ *              description: Token de validacion
+ *              required: true
+ *              schema:
+ *                  type: string
  *      requestBody:
  *        required: true
  *        content:
@@ -146,6 +153,12 @@ router.put("/:id", [
  *            type: string
  *          required: true
  *          description: El rol id
+ *        -   in: header
+ *            name: user-token
+ *            description: Token de validacion
+ *            required: true
+ *            schema:
+ *                type: string
  *      responses:
  *        200:
  *          description: Se eliminó el rol con exito
@@ -167,6 +180,12 @@ router.put("/:id", [
  *            type: string
  *          required: true
  *          description: El id del rol
+ *        -   in: header
+ *            name: user-token
+ *            description: Token de validacion
+ *            required: true
+ *            schema:
+ *                type: string
  *      requestBody:
  *        required: true
  *        content:
