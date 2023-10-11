@@ -203,4 +203,14 @@
         justify-content: center;
         align-items: center;
     }
+
+    .firstTextPage{
+        width: 750px;
+        margin-bottom: 1rem;
+    }
+
+    .tablePage{
+        width: 200px;
+    }
+
 }
