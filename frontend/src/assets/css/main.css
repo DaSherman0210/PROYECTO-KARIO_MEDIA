@@ -181,6 +181,10 @@
     align-items: center;
 }
 
+.eliminarButton{
+    cursor: pointer;
+}
+
 @media (max-width: 400px) {
     .headerPage {
         width: 750px;
