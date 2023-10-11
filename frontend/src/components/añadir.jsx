@@ -98,13 +98,18 @@ const Añadir = () => {
                     </div>
                     <div className="divAdd categoriaAdd">
                         <label>Categoria</label>
-                        <input
+                        <select
                             type="text"
                             required
+                            className="selectInputAdd"
                             placeholder="Categoria"
                             value={categoria}
                             onChange={(e) => setCategoria(e.target.value)}
-                        />
+                        >
+                            <option value="Baja">Baja</option>
+                            <option value="Media">Media</option>
+                            <option value="Alta">Alta</option>
+                        </select>
                     </div>
                     <div className="divAdd fechaInicioAdd">
                         <label>Fecha de Inicio</label>
