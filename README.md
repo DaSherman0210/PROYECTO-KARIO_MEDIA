@@ -89,9 +89,9 @@ Inicializar el proyecto
 
 Primero se debe agregar en la carpeta backend el archivo **.env**, copiar la estructura que se encuentra en el archivo **.env.example** y cambiarle los datos por los siguientes (El lugar de "password" se debe cambiar por una clave la cual se le proporcionará al profesor externamente): 
 
-PORT= 7778
-MONGO_URI= mongodb+srv://joshan:password@kariocluster.x7ikp2c.mongodb.net/Kario
-PRIVATE_OR_SECRET_KEY = llave
+* PORT= 7778
+* MONGO_URI= mongodb+srv://joshan:password@kariocluster.x7ikp2c.mongodb.net/Kario
+* PRIVATE_OR_SECRET_KEY = llave
 
 Se inicializan dos terminales, en la primera se coloca: 
 
